@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<form method="get">
+            <h4>Фильтрация</h4>
+            {{ myFilter.form.as_p }}
+            <br>
+            <button class="btn btn-primary" type="submit">
+                Search
+            </button>
+            {% include "plan/new_post.html" %}
+        </form>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Расстояние</th>
+                    <th scope="col">Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plan in plans %}
+                <tr>
+                    <td>{{ plan.title }}</td>
+                    <td align="right">{{ plan.quantity }} шт</td>
+                    <td align="right">{{ plan.distance }} км</td>
+                    <td width="26%">{{ plan.the_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% include "plan/paginator.html" %}
+{% endblock %}
