@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-import django_tables2
 from .filters import PlanFilter
 from django.views.generic import TemplateView, ListView
 from .forms import PlanCreateForm
 from .models import Plan
-from .tables import PlanTable
 from django.core.paginator import Paginator
 
 
@@ -24,7 +22,7 @@ def index(request):
         if form.is_valid():
             Plan.objects.create(**form.cleaned_data)
             return redirect('index')
-        return render(request, 'plan/new_post.html', {'form': form})
+        return render(request, {'form': form})
     form = PlanCreateForm()
     return render(
         request, 'plan/index.html', {
@@ -35,7 +33,3 @@ def index(request):
         }
     )
 
-
-def new_post(request):
-
-    return render(request, 'plan/new_post.html', {'form': form})
