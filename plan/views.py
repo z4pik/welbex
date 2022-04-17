@@ -11,12 +11,12 @@ from django.core.paginator import Paginator
 
 def index(request):
     plan_list = Plan.objects.all()
-    myFilter = PlanFilter(request.GET, queryset=plan_list)
+    myFilter = PlanFilter(request.GET, queryset=plan_list)  # Фильтрация
     plan_list = myFilter.qs
-    p = Paginator(plan_list, 5)
+    p = Paginator(plan_list, 5)  # Пагинация по 5 записей на страницу
     page = request.GET.get('page')
     plans = p.get_page(page)
-    form = PlanCreateForm(request.POST or None, files=request.FILES or None)
+    form = PlanCreateForm(request.POST or None, files=request.FILES or None) # Форма добавления новой записи
     if request.method == 'POST':
         form = PlanCreateForm(request.POST, request.FILES)
         if form.is_valid():

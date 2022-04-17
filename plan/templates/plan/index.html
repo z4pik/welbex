@@ -3,14 +3,14 @@
 {% block content %}
         <form method="get">
         <h4>Фильтрация</h4>
-            {{ myFilter.form.as_p }}
+            {{ myFilter.form.as_p }} <!-- Поиск по названию + фильтрация -->
             <br>
             <button class="btn btn-primary" type="submit">
-                Search
+                Поиск
             </button>
 
         </form>
-{% include "plan/new_post.html" %}
+{% include "plan/new_post.html" %} <!-- Добавлеение новой записи -->
         <table class="table">
             <thead>
                 <tr>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for plan in plans %}
+                {% for plan in plans %} <!-- Вывод таблицы -->
                 <tr>
                     <td>{{ plan.title }}</td>
                     <td align="right">{{ plan.quantity }} шт</td>
